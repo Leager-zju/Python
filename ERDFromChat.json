@@ -1,0 +1,51 @@
+{
+  "ERD": [
+    {
+      "entity": "Student",
+      "attributes": [
+        "ID",
+        "Name",
+        "Age"
+      ],
+      "relationship": [
+        {
+          "type": "one-to-many",
+          "entity": "Enrollment"
+        },
+        {
+          "type": "one-to-one",
+          "entity": "Course"
+        }
+      ]
+    },
+    {
+      "entity": "Course",
+      "attributes": [
+        "CourseID",
+        "CourseName"
+      ],
+      "relationship": [
+        {
+          "type": "one-to-many",
+          "entity": "Enrollment"
+        }
+      ]
+    },
+    {
+      "entity": "Enrollment",
+      "attributes": [
+        "Grade"
+      ],
+      "relationship": [
+        {
+          "type": "many-to-one",
+          "entity": "Student"
+        },
+        {
+          "type": "many-to-one",
+          "entity": "Course"
+        }
+      ]
+    }
+  ]
+}

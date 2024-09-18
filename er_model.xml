@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ERModel>
+	<entity name="Student">
+		<attribute name="ID"/>
+		<attribute name="Name"/>
+		<attribute name="Age"/>
+	</entity>
+	<entity name="Course">
+		<attribute name="CourseID"/>
+		<attribute name="CourseName"/>
+	</entity>
+	<entity name="Enrollment">
+		<attribute name="StudentID"/>
+		<attribute name="CourseID"/>
+		<attribute name="Grade"/>
+	</entity>
+	<relationship type="one-to-many">
+		<entity from="Enrollment"/>
+		<entity to="Student"/>
+	</relationship>
+	<relationship type="one-to-many">
+		<entity from="Enrollment"/>
+		<entity to="Course"/>
+	</relationship>
+</ERModel>
