@@ -13,4 +13,4 @@ CREATE TABLE Enrollment (
     Grade VARCHAR(10),
     FOREIGN KEY (StudentID) REFERENCES Student(ID),
     FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
-);  
+);
