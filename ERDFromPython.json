@@ -19,11 +19,9 @@
       {
         "name": "Enrollment",
         "attributes": [
-          "Grade"
-        ],
-        "foreign_keys": [
           "StudentID",
-          "CourseID"
+          "CourseID",
+          "Grade"
         ]
       }
     ],
@@ -32,6 +30,11 @@
         "lhs": "Student",
         "rhs": "Enrollment",
         "type": "one_to_many"
+      },
+      {
+        "lhs": "Student",
+        "rhs": "Course",
+        "type": "many_to_many"
       },
       {
         "lhs": "Course",
