@@ -1,46 +1,83 @@
 {
-  "ERD": {
-    "entities": [
-      {
-        "name": "Student",
-        "attributes": [
-          "ID",
-          "Name",
-          "Age"
-        ]
-      },
-      {
-        "name": "Course",
-        "attributes": [
-          "CourseID",
-          "CourseName"
-        ]
-      },
-      {
-        "name": "Enrollment",
-        "attributes": [
-          "StudentID",
-          "CourseID",
-          "Grade"
-        ]
-      }
-    ],
-    "relationships": [
-      {
-        "lhs": "Student",
-        "rhs": "Enrollment",
-        "type": "one_to_many"
-      },
-      {
-        "lhs": "Student",
-        "rhs": "Course",
-        "type": "many_to_many"
-      },
-      {
-        "lhs": "Course",
-        "rhs": "Enrollment",
-        "type": "one_to_many"
-      }
-    ]
-  }
+  "ERD": [
+    {
+      "name": "Person",
+      "attributes": [
+        "id",
+        "name"
+      ],
+      "relationships": []
+    },
+    {
+      "name": "Passport",
+      "attributes": [
+        "id",
+        "number",
+        "person_id"
+      ],
+      "relationships": [
+        {
+          "related_entity": "Person",
+          "type": "one_to_one"
+        }
+      ]
+    },
+    {
+      "name": "Department",
+      "attributes": [
+        "id",
+        "name"
+      ],
+      "relationships": []
+    },
+    {
+      "name": "Employee",
+      "attributes": [
+        "id",
+        "name",
+        "department_id"
+      ],
+      "relationships": [
+        {
+          "related_entity": "Department",
+          "type": "many_to_one"
+        }
+      ]
+    },
+    {
+      "name": "Student",
+      "attributes": [
+        "ID",
+        "Name",
+        "Age"
+      ],
+      "relationships": []
+    },
+    {
+      "name": "Course",
+      "attributes": [
+        "CourseID",
+        "CourseName"
+      ],
+      "relationships": []
+    },
+    {
+      "name": "Enrollment",
+      "attributes": [
+        "StudentID",
+        "CourseID",
+        "Grade"
+      ],
+      "relationships": [
+        {
+          "related_entity": "Student",
+          "type": "many_to_one"
+        },
+        {
+          "related_entity": "Course",
+          "type": "many_to_one"
+        }
+      ]
+    }
+  ]
 }

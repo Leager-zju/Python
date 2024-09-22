@@ -18,7 +18,7 @@ class TableInfo:
         self.reference: List[RefInfo] = []
 
 def get_primary_key(column_def: str):
-    if 'PRIMARY KEY' not in column_def:
+    if 'PRIMARY' not in column_def:
         return None, False
 
     primary_key_column = re.search(r'PRIMARY\s+KEY\s+\((\w+)\)', column_def)
@@ -38,11 +38,10 @@ def get_unique_key(column_def: str):
     return re.search(r'(\w+)', column_def).group(1), True
 
 def get_reference_table(column_def: str):
-    if 'FOREIGN KEY' not in column_def:
+    if 'FOREIGN' not in column_def:
         return None, None
 
-    foreign_key_column = re.search(r'FOREIGN\s+KEY\s+\((\w+)\)REFERENCES\s+(\w+)\((\w+)\)', column_def)
-
+    foreign_key_column = re.search(r'FOREIGN\s+KEY\s+\((\w+)\)\s+REFERENCES\s+(\w+)\((\w+)\)', column_def)
     if foreign_key_column:
         return foreign_key_column.group(1), foreign_key_column.group(2)
 

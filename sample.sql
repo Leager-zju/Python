@@ -1,4 +1,3 @@
--- one to one
 CREATE TABLE Person (
     id INT PRIMARY KEY,
     name VARCHAR(255)
@@ -11,7 +10,6 @@ CREATE TABLE Passport (
     FOREIGN KEY (person_id) REFERENCES Person(id)
 );
 
--- one to many
 CREATE TABLE Department (
     id INT PRIMARY KEY,
     name VARCHAR(255)
@@ -24,7 +22,6 @@ CREATE TABLE Employee (
     FOREIGN KEY (department_id) REFERENCES Department(id)
 );
 
--- many to many
 CREATE TABLE Student (
     ID INT PRIMARY KEY,
     Name VARCHAR(255),

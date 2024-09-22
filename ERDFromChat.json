@@ -1,43 +1,39 @@
 {
-  "ERD": {
-    "entities": [
-      {
-        "name": "Student",
-        "attributes": [
-          "ID",
-          "Name",
-          "Age"
-        ]
-      },
-      {
-        "name": "Course",
-        "attributes": [
-          "CourseID",
-          "CourseName"
-        ]
-      },
-      {
-        "name": "Enrollment",
-        "attributes": [
-          "Grade"
-        ],
-        "foreign_keys": [
-          "StudentID",
-          "CourseID"
-        ]
-      }
-    ],
-    "relationships": [
-      {
-        "lhs": "Student",
-        "rhs": "Enrollment",
-        "type": "one_to_many"
-      },
-      {
-        "lhs": "Course",
-        "rhs": "Enrollment",
-        "type": "one_to_many"
-      }
-    ]
-  }
+  "ERD": [
+    {
+      "name": "Student",
+      "attributes": [
+        "ID",
+        "Name",
+        "Age"
+      ],
+      "relationships": []
+    },
+    {
+      "name": "Course",
+      "attributes": [
+        "CourseID",
+        "CourseName"
+      ],
+      "relationships": []
+    },
+    {
+      "name": "Enrollment",
+      "attributes": [
+        "Grade",
+        "StudentID",
+        "CourseID"
+      ],
+      "relationships": [
+        {
+          "related_entity": "Student",
+          "type": "many_to_one"
+        },
+        {
+          "related_entity": "Course",
+          "type": "many_to_one"
+        }
+      ]
+    }
+  ]
 }
