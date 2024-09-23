@@ -70,10 +70,12 @@
       ],
       "relationships": [
         {
+          "foreign_key": "StudentID",
           "related_entity": "Student",
           "type": "many_to_one"
         },
         {
+          "foreign_key": "CourseID",
           "related_entity": "Course",
           "type": "many_to_one"
         }

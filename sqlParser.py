@@ -1,21 +1,7 @@
 import sqlparse
 import re
-import json
-import re
 from typing import Dict, List
-
-class RefInfo:
-    def __init__(self, foreign_key:str, ref_table:str):
-        self.foreign_key = foreign_key
-        self.ref_table = ref_table
-
-class TableInfo:
-    def __init__(self, name:str):
-        self.name = name
-        self.primary_key = ''
-        self.columns: List[str] = []
-        self.uniques: List[str] = []
-        self.reference: List[RefInfo] = []
+from common import RefInfo, TableInfo
 
 def get_primary_key(column_def: str):
     if 'PRIMARY' not in column_def:
@@ -48,7 +34,7 @@ def get_reference_table(column_def: str):
 def get_normal_colname(column_def: str):
     return re.search(r'(\w+)', column_def).group(1)
 
-def parse_sql(sql_statement):
+def parse_sql(sql_statement: str) -> Dict[str, TableInfo]:
     parsed = sqlparse.parse(sql_statement)
 
     tbl_to_stmt = {}
@@ -104,39 +90,3 @@ def parse_sql(sql_statement):
                 break
 
     return tables
-
-def generate_JSON(tables: Dict[str, TableInfo]):
-    json_data = []
-    for table_name, table_info in tables.items():
-        entity_data = {
-            'name': table_name,
-            'attributes': [],
-            'relationships': []
-        }
-
-        for column in table_info.columns:
-            entity_data['attributes'].append(column)
-
-        for reference in table_info.reference:
-            foreign_key = reference.foreign_key
-            ref_table = reference.ref_table
-
-            if foreign_key in tables[table_name].uniques:
-                entity_data['relationships'].append(
-                    {
-                        'related_entity': ref_table,
-                        'type': 'one_to_one'
-                    }
-                )
-            else:
-                entity_data['relationships'].append(
-                    {
-                        'related_entity': ref_table,
-                        'type': 'many_to_one'
-                    }
-                )
-        
-        json_data.append(entity_data)
-
-    with open('ERDFromPython.json', 'w+') as file:
-        json.dump({'ERD': json_data}, file)
