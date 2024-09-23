@@ -1,0 +1,44 @@
+{
+  "ERD": [
+    {
+      "name": "Student",
+      "primary_key": "ID",
+      "attributes": [
+        "ID",
+        "Name",
+        "Age"
+      ],
+      "relationships": []
+    },
+    {
+      "name": "Course",
+      "primary_key": "CourseID",
+      "attributes": [
+        "CourseID",
+        "CourseName"
+      ],
+      "relationships": []
+    },
+    {
+      "name": "Enrollment",
+      "primary_key": "",
+      "attributes": [
+        "Grade",
+        "StudentID",
+        "CourseID"
+      ],
+      "relationships": [
+        {
+          "foreign_key": "StudentID",
+          "related_entity": "Student",
+          "type": "many_to_one"
+        },
+        {
+          "foreign_key": "CourseID",
+          "related_entity": "Course",
+          "type": "many_to_one"
+        }
+      ]
+    }
+  ]
+}
